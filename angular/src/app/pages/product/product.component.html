@@ -1,0 +1,24 @@
+<div class="productos">
+  <h1>Productos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio Unitario</th>
+        <th>En Stock</th>
+        <th>Categoría ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí iteramos sobre una lista de productos -->
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.ProductoId }}</td>
+        <td>{{ producto.ProductoNombre }}</td>
+        <td>{{ producto.PrecioUnitario }}</td>
+        <td>{{ producto.EnStock }}</td>
+        <td>{{ producto.CategoriaId }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

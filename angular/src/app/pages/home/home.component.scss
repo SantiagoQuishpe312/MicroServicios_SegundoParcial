@@ -1,0 +1,21 @@
+.caratula {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);  /* Fondo semitransparente para resaltar el texto */
+  }
+  
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  :host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../../../assets/Espe.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
