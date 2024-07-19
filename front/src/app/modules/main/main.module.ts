@@ -10,16 +10,22 @@ import { MatTableModule } from '@angular/material/table';
 import { StudentListComponent } from './pages/estudiantes/estudiantes.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddStudentDialogComponent } from './pages/estudiantes/add-student.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     MainComponent,
     EjemploComponent,
-    StudentListComponent
+    StudentListComponent,AddStudentDialogComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,MatButtonModule,MatCardModule,
-    MatTableModule,MatIconModule,MatDialogModule
+    MatTableModule,MatIconModule,MatDialogModule, ReactiveFormsModule, MatFormFieldModule,
+    MatInputModule, MatSnackBarModule
   ]
 })
 export class MainModule { }

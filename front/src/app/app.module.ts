@@ -31,7 +31,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 registerLocaleData(localeES, GlobalConstant.LOCAL_CODE);
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { StudentListComponent } from './modules/main/pages/estudiantes/estudiantes.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [AppComponent ],
   imports: [
@@ -49,8 +53,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatButtonModule,
     MatTableModule,
-    MatIconModule,MatDialogModule,
-
+    MatIconModule,MatDialogModule, ReactiveFormsModule, MatFormFieldModule,MatInputModule,
+    MatSnackBarModule,
     HotToastModule.forRoot()
   ],
   providers: [

@@ -6,7 +6,7 @@ import { DegreeComponent } from './pages/degree/degree.component';
 import { StudentListComponent } from './pages/estudiantes/estudiantes.component';
 const routes: Routes = [
   {
-    path: 'principal',
+    path: 'adm_est',
     component: MainComponent
   },
   {
