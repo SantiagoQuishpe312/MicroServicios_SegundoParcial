@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Matricular estudiante</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <input type="text" placeholder="Selecciona un estudiante" matInput [formControl]="userControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+        {{ user.nombre }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-button (click)="enroll()" [disabled]="!userControl.value">Matricular</button>
+</div>

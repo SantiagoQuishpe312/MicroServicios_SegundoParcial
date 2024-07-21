@@ -1,6 +1,8 @@
 export const environment = {
   production: false,
   appApiUrl: 'http://localhost:8001/api/v1.0',
+  appApiUrl1: 'http://localhost:8002/api/v1.0',
+
   espematicoApiUrl: 'https://espematico-api.espe.edu.ec/reporteWs',
   imageApiUrl: 'https://image-api.espe.edu.ec/imagen/',
   sso: {

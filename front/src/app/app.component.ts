@@ -175,7 +175,7 @@ export class AppComponent implements OnInit {
           {
             type: 'link',
             label: 'Administracion de Estudiantes',
-            route: 'main/adm_est',
+            route: 'main/students',
             icon: 'mat:people'
           }
         ]

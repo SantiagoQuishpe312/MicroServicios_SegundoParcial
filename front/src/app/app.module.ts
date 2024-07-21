@@ -36,6 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { StudentListComponent } from './modules/main/pages/estudiantes/estudiantes.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CourseDetailsComponent } from './modules/main/pages/estudiantes-curso/course-details.component';
 @NgModule({
   declarations: [AppComponent ],
   imports: [

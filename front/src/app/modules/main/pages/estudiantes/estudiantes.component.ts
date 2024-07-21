@@ -5,6 +5,7 @@ import { AddStudentDialogComponent } from './add-student.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog.component';
+
 @Component({
   selector: 'app-estudiantes',
   templateUrl: './estudiantes.component.html',
@@ -14,10 +15,10 @@ export class StudentListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', 'actions'];
   students: Users[] = [];
 
-  constructor(private userService: UsersService,
+  constructor(
+    private userService: UsersService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +32,22 @@ export class StudentListComponent implements OnInit {
   }
 
   editStudent(id: number) {
-    // Implementar la lógica de edición
-    console.log('Editar estudiante con ID:', id);
+    this.userService.getById(id).subscribe((student) => {
+      const dialogRef = this.dialog.open(AddStudentDialogComponent, {
+        data: { id: student.id } // Pasa el ID del estudiante para la edición
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.getAllStudents();
+          this.snackBar.open('Estudiante editado correctamente', 'Cerrar', {
+            duration: 3000
+          });
+        }
+      });
+    });
   }
+  
 
   deleteStudent(id: number) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent);
@@ -58,14 +72,16 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-
   addStudent() {
-   const dialogRef = this.dialog.open(AddStudentDialogComponent);
-
+    console.log("abierto")
+    const dialogRef = this.dialog.open(AddStudentDialogComponent);
+    
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-          this.getAllStudents(); // Refresh the list after adding a new student
-        
+        this.getAllStudents(); // Refresh the list after adding a new student
+        this.snackBar.open('Estudiante agregado correctamente', 'Cerrar', {
+          duration: 3000
+        });
       }
     });
   }

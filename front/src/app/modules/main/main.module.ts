@@ -15,17 +15,28 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AddStudentDialogComponent } from './pages/estudiantes/add-student.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CoursesListComponent } from './pages/cursos/courses.component';
+import { AddCourseDialogComponent } from './pages/cursos/add-course.component';
+import { CourseDetailsComponent } from './pages/estudiantes-curso/course-details.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // Importa MatProgressSpinnerModule
+import { MatSelectModule } from '@angular/material/select';
+import { EnrollStudentDialogComponent } from './pages/estudiantes-curso/enroll-student-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     MainComponent,
     EjemploComponent,
-    StudentListComponent,AddStudentDialogComponent
+    StudentListComponent,AddStudentDialogComponent,CoursesListComponent,
+    AddCourseDialogComponent,
+    CourseDetailsComponent,
+    EnrollStudentDialogComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,MatButtonModule,MatCardModule,
     MatTableModule,MatIconModule,MatDialogModule, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatSnackBarModule
+    MatInputModule, MatSnackBarModule,MatProgressSpinnerModule,
+    MatSelectModule,MatAutocompleteModule
   ]
 })
 export class MainModule { }

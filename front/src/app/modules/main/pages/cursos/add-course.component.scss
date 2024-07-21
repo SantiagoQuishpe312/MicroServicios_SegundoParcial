@@ -1,0 +1,23 @@
+.dialog-title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .dialog-content {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  

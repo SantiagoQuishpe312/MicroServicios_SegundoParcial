@@ -4,6 +4,8 @@ import { MainComponent} from './pages/main/main.component';
 import { EjemploComponent } from './pages/ejemplo/ejemplo.component';
 import { DegreeComponent } from './pages/degree/degree.component';
 import { StudentListComponent } from './pages/estudiantes/estudiantes.component';
+import { CoursesListComponent } from './pages/cursos/courses.component';
+import { CourseDetailsComponent } from './pages/estudiantes-curso/course-details.component';
 const routes: Routes = [
   {
     path: 'adm_est',
@@ -20,6 +22,14 @@ const routes: Routes = [
   {
     path:'students',
     component:StudentListComponent
+  },
+  {
+    path:'courses',
+    component:CoursesListComponent
+  },
+  {
+    path:'course-details/:id',
+    component:CourseDetailsComponent
   }
 ];
 

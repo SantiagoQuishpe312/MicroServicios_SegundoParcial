@@ -1,24 +1,24 @@
-<h1 mat-dialog-title class="dialog-title">Agregar Estudiante</h1>
-<div mat-dialog-content class="dialog-content">
+<h1 mat-dialog-title>{{ isEditMode ? 'Editar Estudiante' : 'Agregar Estudiante' }}</h1>
+<div mat-dialog-content>
   <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="nombre">
       <mat-error *ngIf="studentForm.controls['nombre'].invalid">El nombre es obligatorio</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput formControlName="email">
       <mat-error *ngIf="studentForm.controls['email'].invalid">Email válido es obligatorio</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field *ngIf="!isEditMode">
       <mat-label>Contraseña</mat-label>
       <input matInput type="password" formControlName="password">
-      <mat-error *ngIf="studentForm.controls['password'].invalid">La contraseña es obligatoria y debe tener al menos 6 caracteres</mat-error>
+      <mat-error *ngIf="studentForm.controls['password'].invalid">La contraseña es obligatoria</mat-error>
     </mat-form-field>
     <div mat-dialog-actions>
       <button mat-button type="button" (click)="onCancel()">Cancelar</button>
-      <button mat-button type="submit" [disabled]="studentForm.invalid">Agregar</button>
+      <button mat-button type="submit" [disabled]="studentForm.invalid">{{ isEditMode ? 'Guardar' : 'Agregar' }}</button>
     </div>
   </form>
 </div>
