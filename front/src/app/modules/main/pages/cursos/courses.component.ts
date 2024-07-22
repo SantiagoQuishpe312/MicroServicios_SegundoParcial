@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from 'src/app/core/http/courses/courses.component';
+import { CoursesService } from 'src/app/core/http/courses/courses.service';
 import { Courses } from 'src/app/types/courses.types';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';

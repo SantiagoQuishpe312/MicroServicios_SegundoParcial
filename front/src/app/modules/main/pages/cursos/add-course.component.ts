@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CoursesService } from 'src/app/core/http/courses/courses.component';
+import { CoursesService } from 'src/app/core/http/courses/courses.service';
 
 @Component({
   selector: 'app-add-course',

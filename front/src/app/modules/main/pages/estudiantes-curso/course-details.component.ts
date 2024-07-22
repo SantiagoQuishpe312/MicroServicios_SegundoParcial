@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CoursesService } from 'src/app/core/http/courses/courses.component';
+import { CoursesService } from 'src/app/core/http/courses/courses.service';
 import { UsersService } from 'src/app/core/http/user/user.service';
 import { Courses } from 'src/app/types/courses.types';
 import { Users } from 'src/app/types/users.types';

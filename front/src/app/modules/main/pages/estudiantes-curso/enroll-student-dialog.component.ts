@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { UsersService } from 'src/app/core/http/user/user.service';
-import { CoursesService } from 'src/app/core/http/courses/courses.component';
+import { CoursesService } from 'src/app/core/http/courses/courses.service';
 import { Users } from 'src/app/types/users.types';
 
 @Component({

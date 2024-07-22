@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './pages/main/main.component';
-import { EjemploComponent } from './pages/ejemplo/ejemplo.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -25,7 +24,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     MainComponent,
-    EjemploComponent,
+    
     StudentListComponent,AddStudentDialogComponent,CoursesListComponent,
     AddCourseDialogComponent,
     CourseDetailsComponent,

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Component, Inject, LOCALE_ID, OnInit, Renderer2 } from '@angular/core';
 import { ConfigService } from '../@vex/config/config.service';
 import { Settings } from 'luxon';
