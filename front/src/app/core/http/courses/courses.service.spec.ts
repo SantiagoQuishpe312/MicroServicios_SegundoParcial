@@ -8,7 +8,7 @@ describe('CoursesService', () => {
   let service: CoursesService;
   let httpMock: HttpTestingController;
 
-  // Mock data
+  
   const mockCourses: Courses[] = [
     { id: 1, nombre: 'Matemáticas', cursoUsuarios: [] },
     { id: 2, nombre: 'Ciencias', cursoUsuarios: [] }
@@ -34,11 +34,11 @@ describe('CoursesService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
+  it('Iniciar el Servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get all courses', () => {
+  it('Recuperar todos los cursos', () => {
     service.getAll().subscribe(courses => {
       expect(courses).toEqual(mockCourses);
     });
@@ -48,7 +48,7 @@ describe('CoursesService', () => {
     req.flush(mockCourses);
   });
 
-  it('should get course by id', () => {
+  it('Obtener un curso por su ID', () => {
     service.getById(1).subscribe(course => {
       expect(course).toEqual(mockCourse);
     });
@@ -58,7 +58,7 @@ describe('CoursesService', () => {
     req.flush(mockCourse);
   });
 
-  it('should create a course', () => {
+  it('Deberia crear un curso', () => {
     service.create(mockCourse).subscribe();
 
     const req = httpMock.expectOne(`${service['URL']}/add`);
@@ -67,7 +67,7 @@ describe('CoursesService', () => {
     req.flush({});
   });
 
-  it('should update a course', () => {
+  it('Deberia Actualizar un curso', () => {
     service.update(1, mockCourse).subscribe(course => {
       expect(course).toEqual(mockCourse);
     });
@@ -78,7 +78,7 @@ describe('CoursesService', () => {
     req.flush(mockCourse);
   });
 
-  it('should delete a course', () => {
+  it('Deberia eliminar un curso', () => {
     service.delete(1).subscribe();
 
     const req = httpMock.expectOne(`${service['URL']}/delete/1`);
@@ -86,7 +86,7 @@ describe('CoursesService', () => {
     req.flush({});
   });
 
-  it('should enroll a user in a course', () => {
+  it('Deberia matricular a un usuario en un curso', () => {
     const userData = { usuarioId: 13 };
     service.matricular(1, userData).subscribe();
 
@@ -96,7 +96,7 @@ describe('CoursesService', () => {
     req.flush({});
   });
 
-  it('should unenroll a user from a course', () => {
+  it('Deberia desmatricular a un usuario de un curso', () => {
     service.desmatricular(1, 13).subscribe();
 
     const req = httpMock.expectOne(`${service['URL']}/eliminar-del-curso/1/usuario/13`);

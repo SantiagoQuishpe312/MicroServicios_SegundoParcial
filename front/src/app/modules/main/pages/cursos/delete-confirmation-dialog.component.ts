@@ -12,7 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
     <button mat-button color="warn" (click)="onConfirm()">Eliminar</button>
   </div>
   `,
-  styleUrls: ['./delete-confirmation-dialog.component.scss']
+  styleUrls: ['./courses.component.scss']
 })
 export class DeleteConfirmationDialogComponent {
 

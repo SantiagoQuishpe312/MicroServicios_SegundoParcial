@@ -6,17 +6,17 @@ import { Users } from 'src/app/types/users.types';
 describe('UsersService', () => {
   let service: UsersService;
   let httpMock: HttpTestingController;
-
-  // Mock data
+ 
   const mockUsers: Users[] = [
-    { id: 1, nombre: 'Juan Pérez', email: 'juan.perez@example.com' },
-    { id: 2, nombre: 'Ana García', email: 'ana.garcia@example.com' }
+    { id: 1, nombre: 'Juan Pérez', email: 'juan.perez@example.com' ,password:"1234567"},
+    { id: 2, nombre: 'Ana García', email: 'ana.garcia@example.com',password:"1234567" }
   ];
 
   const mockUser: Users = {
     id: 1,
     nombre: 'Juan Pérez',
-    email: 'juan.perez@example.com'
+    email: 'juan.perez@example.com',
+    password: '12345678'
   };
 
   beforeEach(() => {
@@ -33,11 +33,11 @@ describe('UsersService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
+  it('Deberia inicializar el Servicio', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get all users', () => {
+  it('Deberia recuperar todos los usuarios', () => {
     service.getAll().subscribe(users => {
       expect(users).toEqual(mockUsers);
     });
@@ -47,7 +47,7 @@ describe('UsersService', () => {
     req.flush(mockUsers);
   });
 
-  it('should get user by id', () => {
+  it('Deberia recuperar al usuario por id', () => {
     service.getById(1).subscribe(user => {
       expect(user).toEqual(mockUser);
     });
@@ -57,7 +57,7 @@ describe('UsersService', () => {
     req.flush(mockUser);
   });
 
-  it('should create a user', () => {
+  it('Deberia agregar un nuevo usuario', () => {
     service.create(mockUser).subscribe();
 
     const req = httpMock.expectOne(`${service['URL']}/add`);
@@ -66,7 +66,7 @@ describe('UsersService', () => {
     req.flush({});
   });
 
-  it('should update a user', () => {
+  it('Deberia Actualizar a un usuario', () => {
     service.update(1, mockUser).subscribe(user => {
       expect(user).toEqual(mockUser);
     });
@@ -77,7 +77,7 @@ describe('UsersService', () => {
     req.flush(mockUser);
   });
 
-  it('should delete a user', () => {
+  it('Deberia eliminar a un usuario', () => {
     service.delete(1).subscribe();
 
     const req = httpMock.expectOne(`${service['URL']}/delete/1`);

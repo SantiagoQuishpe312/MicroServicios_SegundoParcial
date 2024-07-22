@@ -17,8 +17,8 @@ describe('CoursesListComponent', () => {
   let router: jasmine.SpyObj<Router>;
 
   const mockCourses: Courses[] = [
-    { id: 1, nombre: 'Course 1',cursoUsuarios:[] },
-    { id: 2, nombre: 'Course 2',cursoUsuarios:[] },
+    { id: 1, nombre: 'Curso 1', cursoUsuarios: [] },
+    { id: 2, nombre: 'Curso 2', cursoUsuarios: [] },
   ];
 
   beforeEach(async () => {
@@ -47,11 +47,11 @@ describe('CoursesListComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get all courses on init', () => {
+  it('debería obtener todos los cursos al iniciar', () => {
     coursesService.getAll.and.returnValue(of(mockCourses));
     fixture.detectChanges();
 
@@ -59,11 +59,14 @@ describe('CoursesListComponent', () => {
     expect(coursesService.getAll).toHaveBeenCalled();
   });
 
-  it('should edit a course', () => {
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(true) });
+  it('debería editar un curso', () => {
+    const dialogRefSpyObj = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
+    dialogRefSpyObj.afterClosed.and.returnValue(of(true));
     matDialog.open.and.returnValue(dialogRefSpyObj);
 
     coursesService.getAll.and.returnValue(of(mockCourses));
+    spyOn(component, 'getAllCourses').and.callThrough(); // Espía a getAllCourses
+
     component.editCourse(1);
     dialogRefSpyObj.afterClosed().subscribe(() => {
       expect(component.getAllCourses).toHaveBeenCalled();
@@ -71,12 +74,14 @@ describe('CoursesListComponent', () => {
     });
   });
 
-  it('should delete a course', () => {
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(true) });
+  it('debería eliminar un curso', () => {
+    const dialogRefSpyObj = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
+    dialogRefSpyObj.afterClosed.and.returnValue(of(true));
     matDialog.open.and.returnValue(dialogRefSpyObj);
 
     coursesService.delete.and.returnValue(of({}));
     coursesService.getAll.and.returnValue(of(mockCourses));
+    spyOn(component, 'getAllCourses').and.callThrough(); // Espía a getAllCourses
 
     component.deleteCourse(1);
     dialogRefSpyObj.afterClosed().subscribe(() => {
@@ -86,8 +91,9 @@ describe('CoursesListComponent', () => {
     });
   });
 
-  it('should handle delete course error', () => {
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(true) });
+  it('debería manejar el error al eliminar un curso', () => {
+    const dialogRefSpyObj = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
+    dialogRefSpyObj.afterClosed.and.returnValue(of(true));
     matDialog.open.and.returnValue(dialogRefSpyObj);
 
     coursesService.delete.and.returnValue(throwError('Error'));
@@ -100,11 +106,13 @@ describe('CoursesListComponent', () => {
     });
   });
 
-  it('should add a course', () => {
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(true) });
+  it('debería agregar un curso', () => {
+    const dialogRefSpyObj = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
+    dialogRefSpyObj.afterClosed.and.returnValue(of(true));
     matDialog.open.and.returnValue(dialogRefSpyObj);
 
     coursesService.getAll.and.returnValue(of(mockCourses));
+    spyOn(component, 'getAllCourses').and.callThrough(); // Espía a getAllCourses
 
     component.addCourse();
     dialogRefSpyObj.afterClosed().subscribe(() => {
@@ -113,8 +121,9 @@ describe('CoursesListComponent', () => {
     });
   });
 
-  it('should navigate to course details', () => {
+  it('debería navegar a los detalles del curso', () => {
     component.seeCourse(1);
     expect(router.navigate).toHaveBeenCalledWith(['/main/course-details', 1]);
   });
+  
 });

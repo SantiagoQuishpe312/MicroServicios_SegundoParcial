@@ -32,20 +32,28 @@ export class StudentListComponent implements OnInit {
   }
 
   editStudent(id: number) {
-    this.userService.getById(id).subscribe((student) => {
-      const dialogRef = this.dialog.open(AddStudentDialogComponent, {
-        data: { id: student.id } // Pasa el ID del estudiante para la edición
-      });
+    this.userService.getById(id).subscribe(
+      (student) => {
+        const dialogRef = this.dialog.open(AddStudentDialogComponent, {
+          data: { id: student.id } // Pasa el ID del estudiante para la edición
+        });
   
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.getAllStudents();
-          this.snackBar.open('Estudiante editado correctamente', 'Cerrar', {
-            duration: 3000
-          });
-        }
-      });
-    });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.getAllStudents();
+            this.snackBar.open('Estudiante editado correctamente', 'Cerrar', {
+              duration: 3000
+            });
+          }
+        });
+      },
+      (error) => {
+        this.snackBar.open('Error al cargar el estudiante', 'Cerrar', {
+          duration: 3000
+        });
+        console.error('Error al cargar el estudiante', error);
+      }
+    );
   }
   
 

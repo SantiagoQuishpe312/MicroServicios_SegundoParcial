@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AddCourseDialogComponent } from './add-course.component';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog.component';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
