@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoursesService } from 'src/app/core/http/courses/courses.component';
 import { UsersService } from 'src/app/core/http/user/user.service';
 import { Courses } from 'src/app/types/courses.types';
@@ -16,21 +18,29 @@ export class CourseDetailsComponent implements OnInit {
   course: Courses | undefined;
   users: Users[] = [];
   isLoading: boolean = true;
-    courseId:number;
+  courseId: number;
+  userCourseRelations: { id: number, usuarioId: number }[] = []; // To hold relation IDs
+
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService,
     private userService: UsersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+    this.loadStudents();
+  }
+
+  loadStudents() {
     this.route.params.subscribe(params => {
       const id = +params['id'];
-      this.courseId=+params['id'];
+      this.courseId = id;
       this.courseService.getById(id).subscribe(course => {
         this.course = course;
         if (course && course.cursoUsuarios) {
+          this.userCourseRelations = course.cursoUsuarios; // Store relations
           let userRequests = course.cursoUsuarios.map(cursoUsuario => {
             return this.userService.getById(cursoUsuario.usuarioId).toPromise();
           });
@@ -60,13 +70,41 @@ export class CourseDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Añadir lógica para matricular al estudiante seleccionado
-        console.log('Estudiante matriculado:', result.id);
-        this.courseService.matricular(this.courseId,result).subscribe(result=>{
-            console.log("registrado")
+        this.snackBar.open('Estudiante matriculado exitosamente', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        this.courseService.matricular(this.courseId, result).subscribe(() => {
+         
+          this.loadStudents(); // Reload students to include the newly enrolled user
+        }, (error) => {
+          console.error('Error matriculating user', error);
+          this.loadStudents(); 
         });
-        this.users.push(result);
       }
     });
+  }
+
+  removeUser(user: Users): void {
+    const relation = this.userCourseRelations.find(r => r.usuarioId === user.id);
+    if (relation) {
+      if (confirm(`¿Estás seguro de que deseas eliminar a ${user.nombre}?`)) {
+        this.snackBar.open('Usuario eliminado exitosamente', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        this.courseService.desmatricular(relation.id,user.id).subscribe(() => {
+        
+          this.loadStudents(); // Reload students to exclude the removed user
+        }, (error) => {
+          console.error('Error removing user', error);
+          this.loadStudents();
+        });
+      }
+    } else {
+      console.error('User relation not found');
+    }
   }
 }

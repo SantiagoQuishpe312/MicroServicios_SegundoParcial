@@ -36,4 +36,7 @@ export class CoursesService {
   matricular(id:number,formData:any): Observable<any>{
     return this.http.put<any>(`${this.URL}/asignar-usuario/${id}`, formData);
   }
+  desmatricular(id:number,idUser:number):Observable<any>{
+    return this.http.delete(`${this.URL}/eliminar-del-curso/${id}/usuario/${idUser}`);
+  }
 }
